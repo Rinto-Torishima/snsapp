@@ -19,7 +19,9 @@ class TopicsController extends Controller
     {
         $idd = Auth::id();
 
-        $topics     = Topic::latest()->get();
+        $topics     = Topic::latest()->paginate(10);
+        // $topics     = Topic::paginate(10);
+
         $context    = ["topics" => $topics, "idd" => $idd];
 
         return view("index", $context);

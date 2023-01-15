@@ -38,6 +38,8 @@
                 </div>
             </div>
         @endforelse
+        {{ $topics->links('pagination.bootstrap-4') }}
+
 
     </div>
 @endsection
