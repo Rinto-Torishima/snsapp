@@ -46,10 +46,10 @@
                 @endif
                 <input type="hidden" name="user_id" value={{ $idd }}>
                 <input type="hidden" name="topic_id" value={{ $topic->id }}>
-                <input id="ftop" class="form-control" type="text" name="comment_name" placeholder="投稿者" required>
-                <textarea id="ftop" rows="3" class="form-control" name="comment_message" placeholder="投稿内容" required></textarea>
-
-                <input class="btn btn-primary" type="submit" value="返信">
+                <input id="ftop" class="form-control" value="{{ old('comment_name') }}" type="text"
+                    name="comment_name" placeholder="投稿者" required>
+                <textarea id="ftop" rows="3" class="form-control" name="comment_message" placeholder="投稿内容" required>{{ old('comment_message') }}</textarea>
+                <input class="btn btn-outline-primary" type="submit" value="返信">
             </form>
         </div>
     </div>
