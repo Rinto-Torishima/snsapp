@@ -17,7 +17,7 @@
                     <input id="ftop" class="form-control" type="text" name="name" placeholder="名前"
                         value="{{ $topic->name }}" required>
                     <textarea id="ftop" class="form-control" name="content" rows="3" placeholder="投稿内容" required>{{ $topic->content }}</textarea>
-                    <input class="btn btn-primary" type="submit" value="送信">
+                    <input class="btn btn-outline-primary" type="submit" value="送信">
                 </form>
             </div>
         @endif

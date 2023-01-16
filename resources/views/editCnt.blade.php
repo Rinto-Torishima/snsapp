@@ -17,7 +17,7 @@
                     <input id="ftop"class="form-control" type="text" name="comment_name" placeholder="名前"
                         value="{{ $comment->comment_name }}" required>
                     <textarea id="ftop" class="form-control" name="comment_message" rows="3" placeholder="コメント" required>{{ $comment->comment_message }}</textarea>
-                    <input class="btn btn-primary" type="submit" value="送信">
+                    <input class="btn btn-outline-primary" type="submit" value="送信">
                 </form>
             </div>
         @endif
