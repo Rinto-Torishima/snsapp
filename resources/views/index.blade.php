@@ -28,6 +28,7 @@
                         {{ csrf_field() }}
                         {{ method_field('delete') }}
                         <button class="btn btn-outline-danger" type="submit">削除</button>
+
                     </form>
                 @endif
             </div>
