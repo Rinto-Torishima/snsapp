@@ -31,7 +31,7 @@
 
         /* 中央寄せ */
         .center {
-            max-width: 800px;
+            max-width: 950px;
             margin: 0 auto;
             padding-left: 18px;
             padding-right: 18px;
