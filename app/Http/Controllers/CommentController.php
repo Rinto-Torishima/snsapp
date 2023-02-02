@@ -48,17 +48,6 @@ class CommentController extends Controller
         return redirect(route("topics.show", $context));
     }
     // ajax
-    public function likes(Request $request)
-    {
-        $id       = $request->id;
-        $messege         = $request->messege;
-
-        //適当な処理
-
-        return response()->json([
-            'responseData' => '成功しました。'
-        ]);
-    }
     public function like(Request $request)
     {
         $user_id = Auth::user()->id; //1.ログインユーザーのid取得
