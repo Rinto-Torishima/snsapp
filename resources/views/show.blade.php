@@ -1,7 +1,6 @@
 @extends('layouts.snsapp')
 
 @section('content')
-    <button id="pan">おして</button>
     <div class="center">
 
         <div style="background-color: rgb(231, 243, 234)" class="topic">

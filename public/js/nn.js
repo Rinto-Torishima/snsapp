@@ -11098,36 +11098,7 @@ return jQuery;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {$(function () {
-  $('#pan').on('click', function () {
-    var id = 123; //thanksを送りたい回答の主キー"id"
-    var messege = "こんにちは";
-    $.ajax({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') //④
-      },
-
-      url: '/likes',
-      type: 'POST',
-      //①
-      dataType: 'json',
-      //②
-      data: {
-        //③
-        id: id,
-        messege: messege
-      }
-    }).done(function (json) {
-      //成功した時の処理
-
-      alert(json['responseData']);
-    }).fail(function (json) {
-      //失敗した時の処理
-      alert('jj');
-    });
-  });
-});
-// //いいね機能
+/* WEBPACK VAR INJECTION */(function($) {// //いいね機能
 $(function () {
   var likeCommentId;
   $(document).on('click', '.like-toggle', function () {
