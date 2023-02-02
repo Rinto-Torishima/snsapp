@@ -2,16 +2,17 @@
 
 @section('content')
     <div class="center">
-        @if ($idd == false)
+        @guest
             <a id="ftop" class="btn btn-outline-primary" href="{{ route('login') }}">ログイン</a>
             <a id="ftop" class="btn btn-outline-primary" href="{{ route('register') }}">新規登録</a>
-        @else
+        @endguest
+        @auth
             <form action="{{ route('logout') }}" method="POST" style="display:inline-block;">
                 @csrf
                 <input id="ftop" class="btn btn-outline-primary" type="submit" value="ログアウト">
 
             </form>
-        @endif
+        @endauth
         <a id="ftop" class="btn btn-outline-success" href="{{ route('topics.create') }}">＋ トピックを作る</a>
 
         @forelse($topics as $topic)

@@ -31,3 +31,6 @@ Route::post('/topics/post', 'CommentController@store')->name('cmt.store')->middl
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+// ajax
+Route::post('/likes', 'CommentController@likes');
+Route::post('/like', 'CommentController@like');

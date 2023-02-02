@@ -1,23 +1,47 @@
 @extends('layouts.snsapp')
 
 @section('content')
+    <button id="pan">おして</button>
     <div class="center">
+
         <div style="background-color: rgb(231, 243, 234)" class="topic">
             <div class="text-secondary">{{ $topic->name }} さん</div>
             <hr>
             <div class="p-2">{!! nl2br(e($topic->content)) !!}</div>
             <div class="text-secondary">投稿日：{{ $topic->created_at }}</div>
             <div class="text-secondary"> コメント数：{{ $topic->comments->count() }}</div>
-
+            @guest
+                <div class="text-secondary"> いいねを押すには<a href="{{ route('login') }}">ログイン</a>する必要があります</div>
+            @endguest
         </div>
         @forelse ($topic->comments as $comment)
             <div class="topic">
-                <div class="text-secondary">名前：{{ $comment->comment_name }}</div>
+                <div class="text-secondary">{{ $comment->comment_name }} さん</div>
                 <hr>
                 <div class="p-2">{{ $comment->comment_message }}</div>
+                @auth
+                    <!-- Review.phpに作ったisLikedByメソッドをここで使用 -->
+                    @if (!$comment->isLikedBy(Auth::user()))
+                        <span class="likes">
+                            <i class="fa-solid fa-heart like-toggle" data-comment-id="{{ $comment->id }}"></i>
+                            <span class="like-counter">{{ $comment->likes->count() }}</span>
+
+                        </span><!-- /.likes -->
+                    @else
+                        <span class="likes">
+                            <i class="fa-solid fa-heart like-toggle liked" data-comment-id="{{ $comment->id }}"></i>
+                            <span class="like-counter">{{ $comment->likes->count() }}</span>
+                        </span><!-- /.likes -->
+                    @endif
+                @endauth
+                @guest
+                    <span class="likes">
+                        <i class="fa-solid fa-heart"></i>
+                        <span class="like-counter">{{ $comment->likes->count() }}</span>
+                    </span><!-- /.likes -->
+                @endguest
                 @if ($idd === $comment->user_id)
                     <a class="btn btn-outline-success" href="{{ route('cnt.edit', $comment->id) }}">編集</a>
-
                     <form action="{{ route('cmt.destroy', $comment->id) }}" method="POST" style="display:inline-block;">
                         @csrf
                         {{ method_field('delete') }}
@@ -53,4 +77,5 @@
             </form>
         </div>
     </div>
+
 @endsection

@@ -7,6 +7,7 @@ use App\Comment;
 use App\Topic;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CommentRequest;
+use App\Like;
 
 
 class CommentController extends Controller
@@ -45,5 +46,38 @@ class CommentController extends Controller
         $topic = Topic::findOrFail($comment->topic_id);
         $context    = ["topic" => $topic];
         return redirect(route("topics.show", $context));
+    }
+    // ajax
+    public function likes(Request $request)
+    {
+        $id       = $request->id;
+        $messege         = $request->messege;
+
+        //適当な処理
+
+        return response()->json([
+            'responseData' => '成功しました。'
+        ]);
+    }
+    public function like(Request $request)
+    {
+        $user_id = Auth::user()->id; //1.ログインユーザーのid取得
+        $comment_id = $request->comment_id; //2.投稿idの取得
+        $already_liked = Like::where('user_id', $user_id)->where('comment_id', $comment_id)->first(); //3.
+
+        if (!$already_liked) { //もしこのユーザーがこの投稿にまだいいねしてなかったら
+            $like = new Like; //4.Likeクラスのインスタンスを作成
+            $like->comment_id = $comment_id; //Likeインスタンスにreview_id,user_idをセット
+            $like->user_id = $user_id;
+            $like->save();
+        } else { //もしこのユーザーがこの投稿に既にいいねしてたらdelete
+            Like::where('comment_id', $comment_id)->where('user_id', $user_id)->delete();
+        }
+        //5.この投稿の最新の総いいね数を取得
+        $comment_likes_count = Comment::withCount('likes')->findOrFail($comment_id)->likes_count;
+        $param = [
+            'comment_likes_count' => $comment_likes_count,
+        ];
+        return response()->json($param); //6.JSONデータをjQueryに返す
     }
 }

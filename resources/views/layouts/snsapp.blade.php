@@ -6,9 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="/js/manifest.js"></script>
+    <script src="/js/vendor.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="{{ mix('js/nn.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
+        .liked {
+            color: pink;
+        }
+
         /* 文字折り返し設定 */
         body {
             word-wrap: break-word;

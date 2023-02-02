@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Topic;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateTopicRequest;
+use App\Comment;
 
 
 class TopicsController extends Controller
