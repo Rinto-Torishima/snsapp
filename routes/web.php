@@ -28,8 +28,8 @@ Route::put('/comment/{id}', 'CommentController@update')->name('cnt.update');
 Route::post('/topics', 'TopicsController@store')->name('topics.store')->middleware('auth');
 Route::post('/topics/post', 'CommentController@store')->name('cmt.store')->middleware('auth');
 
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 // ajax
 Route::post('/like', 'CommentController@like');
+Auth::routes();
