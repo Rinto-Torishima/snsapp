@@ -7,6 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src='/js/app.js'></script>
+
     <script src="{{ mix('/js/nn.js') }}"></script>
     <script src="{{ mix('/js/app.js') }}"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -73,7 +75,16 @@
         }
 
         #ftop {
-            margin-bottom: 6px;
+            margin-bottom: 3px;
+        }
+
+        #fbot {
+            margin-top: 3px;
+        }
+
+        .like-toggle {
+            width: 25px;
+            height: 22px;
         }
     </style>
 </head>

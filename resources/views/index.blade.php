@@ -3,20 +3,21 @@
 @section('content')
     <div class="center">
         @guest
-            <a id="ftop" class="btn btn-outline-primary" href="{{ route('login') }}">ログイン</a>
-            <a id="ftop" class="btn btn-outline-primary" href="{{ route('register') }}">新規登録</a>
+            <a class="btn btn-outline-primary" href="{{ route('login') }}">ログイン</a>
+            <a class="btn btn-outline-primary" href="{{ route('register') }}">新規登録</a>
         @endguest
         @auth
             <form action="{{ route('logout') }}" method="POST" style="display:inline-block;">
                 @csrf
-                <input id="ftop" class="btn btn-outline-primary" type="submit" value="ログアウト">
+                <input class="btn btn-outline-primary" type="submit" value="ログアウト">
 
             </form>
+
         @endauth
-        <a id="ftop" class="btn btn-outline-success" href="{{ route('topics.create') }}">＋ トピックを作る</a>
+        <a class="btn btn-outline-success" href="{{ route('topics.create') }}">＋ トピックを作る</a>
 
         @forelse($topics as $topic)
-            <div class="topic">
+            <div id="fbot" class="topic">
                 <div class="text-secondary">{{ $topic->name }} さん</div>
                 <hr>
                 <div class="p-2">{!! nl2br(e($topic->content)) !!}</div>
@@ -25,7 +26,7 @@
                 <a class="btn btn-outline-primary" href="{{ route('topics.show', $topic->id) }}">詳細</a>
                 @if ($idd === $topic->user_id)
                     <a class="btn btn-outline-success" href="{{ route('topics.edit', $topic->id) }}">編集</a>
-                    <form action="{{ route('topics.destroy', $topic->id) }}/" method="POST" style="display:inline-block;">
+                    <form action="{{ route('topics.destroy', $topic->id) }}" method="POST" style="display:inline-block;">
                         {{ csrf_field() }}
                         {{ method_field('delete') }}
                         <button class="btn btn-outline-danger" type="submit">削除</button>
