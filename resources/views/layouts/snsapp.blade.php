@@ -7,11 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script src="/js/app.js"></script>
-    <script src="{{ asset('js/nn.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.js') }}"></script>
-
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ mix('/js/nn.js') }}"></script>
+    <script src="{{ mix('/js/app.js') }}"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
         .liked {
