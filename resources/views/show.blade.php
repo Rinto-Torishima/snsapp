@@ -18,35 +18,41 @@
                 <div class="text-secondary">{{ $comment->comment_name }} さん</div>
                 <hr>
                 <div class="p-2">{{ $comment->comment_message }}</div>
-                @auth
-                    <!-- Review.phpに作ったisLikedByメソッドをここで使用 -->
-                    @if (!$comment->isLikedBy(Auth::user()))
-                        <span class="likes">
-                            <i class="fa-solid fa-heart like-toggle" data-comment-id="{{ $comment->id }}"></i>
-                            <span class="like-counter">{{ $comment->likes->count() }}</span>
+                <div class="tutumi">
+                    @auth
+                        <!-- Review.phpに作ったisLikedByメソッドをここで使用 -->
+                        @if (!$comment->isLikedBy(Auth::user()))
+                            <div class="likes">
+                                <i class="fa-solid fa-heart like-toggle" data-comment-id="{{ $comment->id }}"></i>
+                                <span class="like-counter badge bg-primary">{{ $comment->likes->count() }}</span>
+                            </div><!-- /.likes -->
+                        @else
+                            <div class="likes">
+                                <i class="fa-solid fa-heart like-toggle liked" data-comment-id="{{ $comment->id }}"></i>
+                                <span class="like-counter badge bg-primary">{{ $comment->likes->count() }}</span>
+                            </div><!-- /.likes -->
+                        @endif
+                    @endauth
+                    @guest
+                        <div class="likes">
+                            <i class="fa-solid fa-heart"></i>
+                            <span class="like-counter badge bg-primary">{{ $comment->likes->count() }}</span>
+                        </div><!-- /.likes -->
 
-                        </span><!-- /.likes -->
-                    @else
-                        <span class="likes">
-                            <i class="fa-solid fa-heart like-toggle liked" data-comment-id="{{ $comment->id }}"></i>
-                            <span class="like-counter">{{ $comment->likes->count() }}</span>
-                        </span><!-- /.likes -->
+                    @endguest
+                    @if ($idd === $comment->user_id)
+                        <div class="right ">
+                            <a style="margin-right: 3px" class="btn btn-outline-success"
+                                href="{{ route('cnt.edit', $comment->id) }}">編集</a>
+                            <form action="{{ route('cmt.destroy', $comment->id) }}" method="POST"
+                                style="display:inline-block;">
+                                @csrf
+                                {{ method_field('delete') }}
+                                <input class="btn btn-outline-danger log" type="submit" value="削除"></button>
+                            </form>
+                        </div>
                     @endif
-                @endauth
-                @guest
-                    <span class="likes">
-                        <i class="fa-solid fa-heart"></i>
-                        <span class="like-counter">{{ $comment->likes->count() }}</span>
-                    </span><!-- /.likes -->
-                @endguest
-                @if ($idd === $comment->user_id)
-                    <a class="btn btn-outline-success" href="{{ route('cnt.edit', $comment->id) }}">編集</a>
-                    <form action="{{ route('cmt.destroy', $comment->id) }}" method="POST" style="display:inline-block;">
-                        @csrf
-                        {{ method_field('delete') }}
-                        <button class="btn btn-outline-danger" type="submit">削除</button>
-                    </form>
-                @endif
+                </div>
             </div>
         @empty
             <div class="topic">

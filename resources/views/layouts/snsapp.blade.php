@@ -9,8 +9,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src='/js/app.js'></script>
 
-    <script src="{{ mix('/js/nn.js') }}"></script>
-    <script src="{{ mix('/js/app.js') }}"></script>
+    <script src="{{ asset('/js/nn.js') }}"></script>
+    <script src="{{ asset('/js/app.js') }}"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
         .liked {
@@ -43,6 +43,7 @@
             margin: 0 auto;
             padding-left: 18px;
             padding-right: 18px;
+
         }
 
         h2 {
@@ -85,6 +86,26 @@
         .like-toggle {
             width: 25px;
             height: 22px;
+        }
+
+        .concon {
+            font-size: 0;
+        }
+
+        .log {
+            font-size: 1rem;
+            margin-right: 3px;
+        }
+
+
+        .right {
+            margin-left: auto;
+            font-size: 0;
+
+        }
+
+        .tutumi {
+            display: flex;
         }
     </style>
 </head>
