@@ -15,9 +15,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get(
+    '/',
+    'TopicsController@welcome'
+);
 Route::resource('/topics', 'TopicsController');
 // コメント消去
 Route::delete('/comment/{id}', 'CommentController@destroy')->name('cmt.destroy');
@@ -32,4 +33,4 @@ Route::post('/topics/post', 'CommentController@store')->name('cmt.store')->middl
 Route::get('/home', 'HomeController@index')->name('home');
 // ajax
 Route::post('/like', 'CommentController@like');
-Auth::routes();
+Auth::routes(['verify' => true]);

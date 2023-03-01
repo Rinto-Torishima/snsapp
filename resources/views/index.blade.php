@@ -17,6 +17,12 @@
 
             <a class="btn btn-outline-success" href="{{ route('topics.create') }}">＋ トピックを作る</a>
         </div>
+        @if (session('status'))
+            <div style="margin-top: 8px" class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
+
         @forelse($topics as $topic)
             <div id="fbot" class="topic">
                 <div class="text-secondary">{{ $topic->name }} さん</div>

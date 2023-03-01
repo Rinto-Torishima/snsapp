@@ -27,7 +27,10 @@ class TopicsController extends Controller
 
         return view("index", $context);
     }
-
+    public function welcome()
+    {
+        return redirect(route("topics.index"));
+    }
     /**
      * Show the form for creating a new resource.
      *

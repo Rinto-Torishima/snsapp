@@ -7,11 +7,11 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <script src='/js/app.js'></script>
-
     <script src="{{ asset('/js/nn.js') }}"></script>
     <script src="{{ asset('/js/app.js') }}"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
         .liked {
             color: pink;
@@ -29,7 +29,7 @@
             justify-content: center;
             align-items: center;
             background-color: rgb(175, 176, 195);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .header h2 {
