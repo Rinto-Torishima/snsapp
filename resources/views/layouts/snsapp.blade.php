@@ -100,6 +100,10 @@
 
         }
 
+        #fbot {
+            margin-top: 3px;
+        }
+
         .tutumi {
             display: flex;
         }
