@@ -113,7 +113,7 @@
 <body>
     <div class="header">
         <a style="text-decoration: none" href="{{ route('topics.index') }}">
-            <h2 style="color: black">みんなの掲示板</h2>
+            <h2 style="color: black">なんでも掲示板</h2>
         </a>
     </div>
     <div class="content">
