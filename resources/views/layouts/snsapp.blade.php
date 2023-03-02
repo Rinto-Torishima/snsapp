@@ -65,6 +65,8 @@
             border-radius: 8px;
             padding: 10px;
             margin-bottom: 6px;
+            margin-top: 6px;
+
         }
 
         .topic p {
@@ -75,13 +77,7 @@
             margin: 0;
         }
 
-        #ftop {
-            margin-bottom: 3px;
-        }
 
-        #fbot {
-            margin-top: 3px;
-        }
 
         .like-toggle {
             width: 25px;

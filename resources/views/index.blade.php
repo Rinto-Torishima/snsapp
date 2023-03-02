@@ -24,14 +24,14 @@
         @endif
 
         @forelse($topics as $topic)
-            <div id="fbot" class="topic">
+            <div class="topic">
                 <div class="text-secondary">{{ $topic->name }} さん</div>
                 <hr>
                 <div class="p-2">{!! nl2br(e($topic->content)) !!}</div>
                 <div class="text-secondary">投稿日：{{ $topic->created_at }}</div>
                 <div class="text-secondary"> コメント数：{{ $topic->comments->count() }}</div>
                 {{-- 横並びにさせる --}}
-                <div class="aaa" style="display: flex">
+                <div style="display: flex">
                     <a style="margin-right: 3px" class="btn btn-outline-primary"
                         href="{{ route('topics.show', $topic->id) }}">詳細</a>
 
