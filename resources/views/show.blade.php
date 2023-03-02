@@ -71,8 +71,10 @@
                 </div>
             </div>
         @elseif(Auth::user() && !Auth::user()->hasVerifiedEmail())
-            <div style="text-align: center" class="card-body bg-light">
-                メール認証を完了するとコメントを送信することができます
+            <div class="card">
+                <div style="text-align: center" class="card-body bg-light">
+                    メール認証を完了するとコメントを送信することができます
+                </div>
             </div>
         @else
             <div class="form">
