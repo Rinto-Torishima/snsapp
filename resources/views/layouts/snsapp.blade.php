@@ -100,8 +100,8 @@
 
         }
 
-        #fbot {
-            margin-top: 3px;
+        #ftop {
+            margin-bottom: 6px;
         }
 
         .tutumi {
