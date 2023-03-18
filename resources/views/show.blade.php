@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="center">
-
+        <a href="{{ route('topics.index') }}">掲示板に戻る</a>
         <div style="background-color: rgb(231, 243, 234)" class="topic">
             <div class="text-secondary">{{ $topic->name }} さん</div>
             <hr>
