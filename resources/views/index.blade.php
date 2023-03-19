@@ -2,6 +2,18 @@
 
 @section('content')
     <div class="center">
+        @if (Auth::user() && !Auth::user()->hasVerifiedEmail())
+            @if (session('resent'))
+                <div class="alert alert-success" style="margin-top: 1rem" role="alert">
+                    {{ __('A fresh verification link has been sent to your email address.') }}
+                </div>
+            @endif
+            <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+                @csrf
+                <button type="submit"
+                    class="btn btn-link p-0 mb-1 align-baseline">{{ __('click here to request another') }}</button>
+            </form>
+        @endif
         {{-- 0pxにする親要素 --}}
         <div class="concon">
             @guest
@@ -17,6 +29,7 @@
 
             <a class="btn btn-outline-success" href="{{ route('topics.create') }}">＋ トピックを作る</a>
         </div>
+
         @if (session('status'))
             <div style="margin-top: 8px" class="alert alert-success" role="alert">
                 {{ session('status') }}

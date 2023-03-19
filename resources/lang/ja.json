@@ -23,6 +23,9 @@
   "Verify Email Address": "メールアドレス確認",
   "Please click the button below to verify your email address.": "ボタンをクリックして、登録されたメールアドレスを確認してください。",
   "If you did not create an account, no further action is required.": "このメールの内容に覚えがない場合は、このまま破棄してください。",
-  "If you’re having trouble clicking the \":actionText\" button, copy and paste the URL below\ninto your web browser:": ":actionTextボタンをクリックできない場合は、次のURLをコピーしてブラウザに貼り付けてください。\n"
+  "If you’re having trouble clicking the \":actionText\" button, copy and paste the URL below\ninto your web browser:": ":actionTextボタンをクリックできない場合は、次のURLをコピーしてブラウザに貼り付けてください。\n",
+  "Verify Your Email Address":"あなたのメールアドレスを確認してください",
+  "A fresh verification link has been sent to your email address.":"新しい確認リンクがメール アドレスに送信されました。",
+  "click here to request another":"これをクリックして確認メールを再送信します"
 }
     
