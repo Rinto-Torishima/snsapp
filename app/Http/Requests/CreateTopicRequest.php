@@ -33,9 +33,9 @@ class CreateTopicRequest extends FormRequest
     {
         return [
             'name.required'     => '名前を入力してください',
-            'name.max'          => '名前は15文字でお願いします。',
+            'name.max'          => '名前は15文字まででお願いします。',
             'content.required'  => 'コメントを入力してください',
-            'content.max'       => 'コメントは255文字でお願いします。',
+            'content.max'       => 'コメントは255文字まででお願いします。',
         ];
     }
 }

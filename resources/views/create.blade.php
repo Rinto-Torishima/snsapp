@@ -4,7 +4,9 @@
     <div class="center">
         @if (count($errors))
             @foreach ($errors->all() as $error)
-                {{ $error }}
+                <div class="alert alert-danger" role="alert">
+                    {{ $error }}
+                </div>
             @endforeach
         @endif
         @if (!Auth::check())
