@@ -32,9 +32,9 @@ class CreateTopicRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'     => '名前を入力してください',
+            'name.required'     => '名前を入力してください。',
             'name.max'          => '名前は15文字まででお願いします。',
-            'content.required'  => 'コメントを入力してください',
+            'content.required'  => 'コメントを入力してください。',
             'content.max'       => 'コメントは255文字まででお願いします。',
         ];
     }
