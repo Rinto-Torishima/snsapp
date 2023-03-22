@@ -94,7 +94,7 @@ return [
     'not_regex' => ':attributeの書式が不正です。',
     'numeric' => ':attributeは数字で入力してください。',
     'present' => ':attributeは存在する必要があります。',
-    'regex' => ':attributeは英数字8文字以上でアルファベットと数字1文字以上にしてください。',
+    'regex' => ':attributeは半角英小文字大文字数字をそれぞれ1種類以上含み、8文字以上24文字以下にしてください。',
     'required' => ':attributeを入力してください。',
     'required_if' => ':otherが:valueの時、:attributeを入力してください。',
     'required_unless' => ':otherが:valuesでない時、:attributeを入力してください。',
