@@ -2,6 +2,8 @@
 
 @section('content')
     <div class="center">
+        <a href="{{ route('topics.index') }}">掲示板に戻る</a>
+
         @if (count($errors))
             @foreach ($errors->all() as $error)
                 <div class="alert alert-danger" role="alert">
