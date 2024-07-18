@@ -26,7 +26,7 @@ class CommentController extends Controller
     }
     public function destroy($id)
     {
-        $comment  = Comment::find($id);
+        $comment = Comment::find($id);
         $comment->delete();
 
         return back();
@@ -34,39 +34,44 @@ class CommentController extends Controller
     public function edit($id)
     {
         $idd = Auth::id();
-        $comment  = Comment::find($id);
-        $context    = ["comment" => $comment, "idd" => $idd];
+        $comment = Comment::find($id);
+        $context = ["comment" => $comment, "idd" => $idd];
         return view("editCnt", $context);
     }
     public function update(CommentRequest $request, $id)
     {
 
         Comment::find($id)->update($request->all());
-        $comment  = Comment::find($id);
+        $comment = Comment::find($id);
         $topic = Topic::findOrFail($comment->topic_id);
-        $context    = ["topic" => $topic];
+        $context = ["topic" => $topic];
         return redirect(route("topics.show", $context));
     }
     // ajax
     public function like(Request $request)
     {
-        $user_id = Auth::user()->id; //1.ログインユーザーのid取得
-        $comment_id = $request->comment_id; //2.投稿idの取得
+        //ログインユーザーのid取得
+        $user_id = Auth::user()->id;
+        //投稿idの取得
+        $comment_id = $request->comment_id;
         $already_liked = Like::where('user_id', $user_id)->where('comment_id', $comment_id)->first(); //3.
-
-        if (!$already_liked) { //もしこのユーザーがこの投稿にまだいいねしてなかったら
-            $like = new Like; //4.Likeクラスのインスタンスを作成
-            $like->comment_id = $comment_id; //Likeインスタンスにreview_id,user_idをセット
+        //もしこのユーザーがこの投稿にまだいいねしてなかったら
+        if (!$already_liked) {
+            //Likeクラスのインスタンスを作成
+            $like = new Like;
+            //Likeインスタンスにreview_id,user_idをセット
+            $like->comment_id = $comment_id;
             $like->user_id = $user_id;
             $like->save();
-        } else { //もしこのユーザーがこの投稿に既にいいねしてたらdelete
+        } else {
+            //もしこのユーザーがこの投稿に既にいいねしてたらdelete
             Like::where('comment_id', $comment_id)->where('user_id', $user_id)->delete();
         }
-        //5.この投稿の最新の総いいね数を取得
+        //この投稿の最新の総いいね数を取得
         $comment_likes_count = Comment::withCount('likes')->findOrFail($comment_id)->likes_count;
         $param = [
             'comment_likes_count' => $comment_likes_count,
         ];
-        return response()->json($param); //6.JSONデータをjQueryに返す
+        return response()->json($param);
     }
 }

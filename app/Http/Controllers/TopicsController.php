@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Topic;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateTopicRequest;
-use App\Comment;
 
 
 class TopicsController extends Controller
@@ -20,10 +19,10 @@ class TopicsController extends Controller
     {
         $idd = Auth::id();
 
-        $topics     = Topic::latest()->paginate(10);
+        $topics = Topic::latest()->paginate(10);
         // $topics     = Topic::paginate(10);
 
-        $context    = ["topics" => $topics, "idd" => $idd];
+        $context = ["topics" => $topics, "idd" => $idd];
 
         return view("index", $context);
     }
@@ -111,9 +110,22 @@ class TopicsController extends Controller
      */
     public function destroy($id)
     {
-        $topic  = Topic::find($id);
+        $topic = Topic::find($id);
         $topic->delete();
         $topic->comments()->delete();
         return redirect(route("topics.index"));
+    }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+        $idd = Auth::id();
+        $query = Topic::latest();
+        if (!empty($keyword)) {
+            $query->where('name', 'LIKE', "%{$keyword}%");
+        }
+        $topics = $query->paginate(10);
+        $context = ["topics" => $topics, "idd" => $idd];
+        return view("index", $context);
     }
 }

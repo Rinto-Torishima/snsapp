@@ -15,6 +15,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('/topics/search', 'TopicsController@search')->name('topics.search');
 Route::get(
     '/',
     'TopicsController@welcome'
@@ -31,6 +32,7 @@ Route::post('/topics/post', 'CommentController@store')->name('cmt.store')->middl
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-// ajax
+// 検索機能
+
 Route::post('/like', 'CommentController@like');
 Auth::routes(['verify' => true]);
