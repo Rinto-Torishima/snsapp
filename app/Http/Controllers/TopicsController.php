@@ -122,8 +122,11 @@ class TopicsController extends Controller
         $idd = Auth::id();
         $query = Topic::latest();
         if (!empty($keyword)) {
-            $query->where('name', 'LIKE', "%{$keyword}%");
-        }
+            $query->where(function($q) use ($keyword) {
+                $q->where('name', 'LIKE', "%{$keyword}%")
+                  ->orWhere('content', 'LIKE', "%{$keyword}%");
+            });
+        }        
         $topics = $query->paginate(10);
         $context = ["topics" => $topics, "idd" => $idd];
         return view("index", $context);

@@ -36,7 +36,7 @@
         </div>
     @endif
     <form action="{{route('topics.search')}}" method="GET">
-        <input type="text" name="keyword" value="" placeholder="ユーザー名で検索" class="form-control">
+        <input type="text" name="keyword" value="" placeholder="投稿者名かスレッド名で検索" class="form-control">
         <button type="submit" class="btn btn-outline-primary">検索</button>
     </form>
     @forelse($topics as $topic)
