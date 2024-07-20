@@ -8,8 +8,7 @@ Laravelを用いた、非同期いいね機能を組み込んだ掲示板です�
 * Laravel
 * jQuery
 * Bootstrap
+* git
+* Visual Studio Code
 * xampp ←主にxamppを使用して開発を行いました。
 * docker
-* git
-## 開発環境
-* Visual Studio Code
