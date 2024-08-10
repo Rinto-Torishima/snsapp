@@ -14,7 +14,6 @@
                 }}</button>
         </form>
     @endif
-    {{-- 0pxにする親要素 --}}
     <div class="concon">
         @guest
             <a style="margin-right: 3px" class="btn btn-outline-primary" href="{{ route('login') }}">ログイン</a>
@@ -46,13 +45,11 @@
             <div class="p-2">{!! nl2br(e($topic->content)) !!}</div>
             <div class="text-secondary">投稿日：{{ $topic->created_at }}</div>
             <div class="text-secondary"> コメント数：{{ $topic->comments->count() }}</div>
-            {{-- 横並びにさせる --}}
             <div style="display: flex">
                 <a style="margin-right: 3px" class="btn btn-outline-primary"
                     href="{{ route('topics.show', $topic->id) }}">詳細</a>
 
                 @if ($idd === $topic->user_id)
-                    {{-- 0pxにする親要素 --}}
                     <div class="concon">
                         <a class="btn  btn-outline-success" style="margin-right: 3px;"
                             href="{{ route('topics.edit', $topic->id) }}">編集</a>

@@ -14,14 +14,12 @@ class CommentController extends Controller
 {
     public function store(CommentRequest $request)
     {
-        // 保存処理
         $comment = new Comment();
         $comment->user_id = $request->user_id;
         $comment->topic_id = $request->topic_id;
         $comment->comment_name = $request->comment_name;
         $comment->comment_message = $request->comment_message;
         $comment->save();
-        // 前の画面に戻る
         return back();
     }
     public function destroy($id)
@@ -47,27 +45,21 @@ class CommentController extends Controller
         $context = ["topic" => $topic];
         return redirect(route("topics.show", $context));
     }
-    // ajax
     public function like(Request $request)
     {
-        //ログインユーザーのid取得
         $user_id = Auth::user()->id;
-        //投稿idの取得
         $comment_id = $request->comment_id;
-        $already_liked = Like::where('user_id', $user_id)->where('comment_id', $comment_id)->first(); //3.
-        //もしこのユーザーがこの投稿にまだいいねしてなかったら
+        // すでにいいねを押しているかをチェック
+        $already_liked = Like::where('user_id', $user_id)->where('comment_id', $comment_id)->first();
         if (!$already_liked) {
-            //Likeクラスのインスタンスを作成
             $like = new Like;
-            //Likeインスタンスにreview_id,user_idをセット
             $like->comment_id = $comment_id;
             $like->user_id = $user_id;
             $like->save();
         } else {
-            //もしこのユーザーがこの投稿に既にいいねしてたらdelete
             Like::where('comment_id', $comment_id)->where('user_id', $user_id)->delete();
         }
-        //この投稿の最新の総いいね数を取得
+        // この投稿の最新の総いいね数を取得
         $comment_likes_count = Comment::withCount('likes')->findOrFail($comment_id)->likes_count;
         $param = [
             'comment_likes_count' => $comment_likes_count,

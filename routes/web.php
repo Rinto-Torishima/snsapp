@@ -29,10 +29,9 @@ Route::put('/comment/{id}', 'CommentController@update')->name('cnt.update');
 // ログイン判定
 Route::post('/topics', 'TopicsController@store')->name('topics.store')->middleware('auth');
 Route::post('/topics/post', 'CommentController@store')->name('cmt.store')->middleware('auth');
+// 検索機能
+Route::post('/like', 'CommentController@like');
+Auth::routes(['verify' => true]);
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-// 検索機能
-
-Route::post('/like', 'CommentController@like');
-Auth::routes(['verify' => true]);

@@ -20,24 +20,23 @@
             <div class="p-2">{{ $comment->comment_message }}</div>
             <div class="tutumi">
                 @auth
-                    <!-- Review.phpに作ったisLikedByメソッドをここで使用 -->
                     @if (!$comment->isLikedBy(Auth::user()))
                         <div class="likes">
                             <i class="fa-solid fa-heart like-toggle" data-comment-id="{{ $comment->id }}"></i>
                             <span class="like-counter badge bg-primary">{{ $comment->likes->count() }}</span>
-                        </div><!-- /.likes -->
+                        </div>
                     @else
                         <div class="likes">
                             <i class="fa-solid fa-heart like-toggle liked" data-comment-id="{{ $comment->id }}"></i>
                             <span class="like-counter badge bg-primary">{{ $comment->likes->count() }}</span>
-                        </div><!-- /.likes -->
+                        </div>
                     @endif
                 @endauth
                 @guest
                     <div class="likes">
                         <i class="fa-solid fa-heart"></i>
                         <span class="like-counter badge bg-primary">{{ $comment->likes->count() }}</span>
-                    </div><!-- /.likes -->
+                    </div>
 
                 @endguest
                 @if ($idd === $comment->user_id)
@@ -62,7 +61,6 @@
     @endforelse
 
 
-    {{-- 送信 --}}
     @if (!Auth::check())
         <div class="card">
             <div style="text-align: center" class="card-body bg-light">

@@ -18,12 +18,8 @@ class TopicsController extends Controller
     public function index()
     {
         $idd = Auth::id();
-
         $topics = Topic::latest()->paginate(10);
-        // $topics     = Topic::paginate(10);
-
         $context = ["topics" => $topics, "idd" => $idd];
-
         return view("index", $context);
     }
     public function welcome()
@@ -50,13 +46,11 @@ class TopicsController extends Controller
      */
     public function store(CreateTopicRequest $request)
     {
-        // 保存処理
         $topic = new Topic();
         $topic->user_id = $request->user_id;
         $topic->name = $request->name;
         $topic->content = $request->content;
         $topic->save();
-
         return redirect(route("topics.index"));
     }
 
@@ -84,7 +78,6 @@ class TopicsController extends Controller
     {
         $idd = Auth::id();
         $topic = Topic::find($id);
-
         $context = ["topic" => $topic, "idd" => $idd];
         return view("edit", $context);
     }
@@ -121,6 +114,7 @@ class TopicsController extends Controller
         $keyword = $request->input('keyword');
         $idd = Auth::id();
         $query = Topic::latest();
+        // 投稿者名かスレッド名で検索
         if (!empty($keyword)) {
             $query->where(function($q) use ($keyword) {
                 $q->where('name', 'LIKE', "%{$keyword}%")
