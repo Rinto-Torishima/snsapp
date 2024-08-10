@@ -34,6 +34,12 @@
             {{ session('status') }}
         </div>
     @endif
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <form action="{{route('topics.search')}}" method="GET">
         <input type="text" name="keyword" value="" placeholder="投稿者名かスレッド名で検索" class="form-control my-2">
         <button type="submit" class="btn btn-outline-primary">検索</button>

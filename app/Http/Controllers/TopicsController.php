@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Topic;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateTopicRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Exception;
+use Illuminate\Support\MessageBag;
 
 
 class TopicsController extends Controller
@@ -46,12 +50,26 @@ class TopicsController extends Controller
      */
     public function store(CreateTopicRequest $request)
     {
-        $topic = new Topic();
-        $topic->user_id = $request->user_id;
-        $topic->name = $request->name;
-        $topic->content = $request->content;
-        $topic->save();
-        return redirect(route("topics.index"));
+        DB::beginTransaction();
+        try {
+            $topic = new Topic();
+            $topic->user_id = $request->user_id;
+            $topic->name = $request->name;
+            $topic->content = $request->content;
+            $topic->save();
+    
+            DB::commit();
+    
+            return redirect(route("topics.index"))->with('success', 'トピックが正常に作成されました。');
+    
+        } catch (Exception $e) {
+            DB::rollBack();
+    
+            Log::error('トピックの作成に失敗しました: ' . $e->getMessage());
+
+            $errors = new MessageBag(['トピックの作成中にエラーが発生しました。']);
+            return redirect()->back()->withErrors($errors);
+        }
     }
 
     /**
