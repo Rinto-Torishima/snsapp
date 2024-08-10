@@ -20,12 +20,8 @@ $(function () {
                 // いいねの数をリアルタイムで更新
                 $this.next(".like-counter").html(data.comment_likes_count);
             })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                alert("いいねの処理に失敗しました。もう一度お試しください。");
-                console.log("ajax通信に失敗しました");
-                console.log("jqXHR          : " + jqXHR.status);
-                console.log("textStatus     : " + textStatus);
-                console.log("errorThrown    : " + errorThrown.message);
+            .fail(function () {
+                alert("いいねの処理に失敗しました。");
             });
     });
 });
