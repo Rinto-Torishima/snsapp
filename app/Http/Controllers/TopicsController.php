@@ -67,7 +67,7 @@ class TopicsController extends Controller
     
             Log::error('トピックの作成に失敗しました: ' . $e->getMessage());
 
-            $errors = new MessageBag(['トピックの作成中にエラーが発生しました。']);
+            $errors = ['トピックの作成中にエラーが発生しました。'];
             return redirect()->back()->withErrors($errors);
         }
     }
