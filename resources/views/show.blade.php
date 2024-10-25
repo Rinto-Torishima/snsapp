@@ -67,7 +67,7 @@
                 ログインするとコメントを送信することができます
             </div>
         </div>
-    @elseif(Auth::user() && !Auth::user()->hasVerifiedEmail())
+    @elseif(Auth::user() && !Auth::user()->hasVerifiedEmail() && is_null(Auth::user()->google_id))
         <div class="card">
             <div style="text-align: center" class="card-body bg-light">
                 メール認証を完了するとコメントを送信することができます

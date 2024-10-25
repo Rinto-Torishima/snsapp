@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="center">
-    @if (Auth::user() && !Auth::user()->hasVerifiedEmail())
+    @if (Auth::user() && !Auth::user()->hasVerifiedEmail() && is_null(Auth::user()->google_id))
         @if (session('resent'))
             <div class="alert alert-success" style="margin-top: 1rem" role="alert">
                 {{ __('A fresh verification link has been sent to your email address.') }}

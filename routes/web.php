@@ -14,6 +14,10 @@
 // use Illuminate\Routing\Route;
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
+
+Route::get('auth/google', [LoginController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
 
 Route::get('/topics/search', 'TopicsController@search')->name('topics.search');
 Route::get(
