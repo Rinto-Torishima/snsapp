@@ -70,7 +70,7 @@ class LoginController extends Controller
                 Auth::login($user);
             }
 
-            return redirect('/home');
+            return redirect(route('topics.index'));
         } catch (Exception $e) {
             return redirect('/login')->with('error', 'Google認証に失敗しました');
         }
